@@ -1,0 +1,10 @@
+if __name__ == '__main__':
+    
+    first_number  = float(raw_input())
+    second_number  = float(raw_input())
+    
+    print format(first_number + second_number, '.2f')
+    print format(first_number - second_number, '.2f')
+    print format(first_number * second_number, '.2f')
+    print format(first_number / second_number, '.2f')
+    print format(first_number // second_number, '.2f')
