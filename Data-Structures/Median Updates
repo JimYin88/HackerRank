@@ -1,0 +1,47 @@
+def enqueue(queue,item):
+  if len(queue)==0:
+    queue.append(item)
+  elif item>queue[-1]:
+    queue.append(item)
+  elif item<queue[0]:
+    queue[0:0]=[item]
+  else:
+    #binary search and insert
+    a=0
+    b=len(queue)-1
+    while b-a>1:
+      c=int((a+b)/2)
+      if queue[c]<item:
+        a=c
+      else:
+        b=c
+    queue[b:b]=[item]
+    
+def medium_value(alist):
+    if len(alist) == 0:
+        return 'Wrong!'
+    elif len(alist) % 2 == 1:
+        return alist[(len(alist) - 1) // 2]
+    else:
+        if (alist[(len(alist) - 2) // 2] + alist[len(alist) // 2]) % 2 == 0:
+            return (alist[(len(alist) - 2) // 2] + alist[len(alist) // 2]) / 2
+        else:
+            return float((alist[(len(alist) - 2) // 2] + alist[len(alist) // 2])) / 2
+    
+
+if __name__ == '__main__':
+    
+    tests = int(raw_input())
+    
+    current_list = []
+    for _ in range(tests):        
+        action, number = raw_input().strip().split(' ')
+        
+        if action == 'a':
+            enqueue(current_list, int(number))
+            print medium_value(current_list)
+        elif action == 'r' and int(number) not in current_list:
+            print 'Wrong!'            
+        else:
+            current_list.remove(int(number))
+            print medium_value(current_list)
